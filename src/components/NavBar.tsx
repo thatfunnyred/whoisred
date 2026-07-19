@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/navbar-style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
