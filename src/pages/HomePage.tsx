@@ -118,32 +118,32 @@ export default function HomePage() {
         <div className="landing-section-right-content"></div>
       </div>
 
-      <div id="wiggle-arrow-container">
-        <svg
-          width="700"
-          height="420"
-          viewBox="0 0 700 420"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <filter id="crayon" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.9"
-                numOctaves="2"
-                seed="12"
-                result="noise"
-              />
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" />
-            </filter>
+      <svg
+        id="wiggle-arrow"
+        width="700"
+        height="420"
+        viewBox="0 0 700 420"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <filter id="crayon" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.9"
+              numOctaves="2"
+              seed="12"
+              result="noise"
+            />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" />
+          </filter>
 
-            <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="0.7" />
-            </filter>
-          </defs>
+          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="0.7" />
+          </filter>
+        </defs>
 
-          <path
-            d="
+        <path
+          d="
       M120 310
       C175 315 240 315 305 285
       C355 262 380 220 365 165
@@ -153,17 +153,17 @@ export default function HomePage() {
       C510 90 565 50 635 78
       C665 90 685 102 695 118
     "
-            fill="none"
-            stroke="#caa61596"
-            stroke-width="22"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            filter="url(#soft)"
-            opacity="0.9"
-          />
+          fill="none"
+          stroke="#caa61596"
+          stroke-width="22"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#soft)"
+          opacity="0.9"
+        />
 
-          <path
-            d="
+        <path
+          d="
       M120 310
       C175 315 240 315 305 285
       C355 262 380 220 365 165
@@ -173,16 +173,16 @@ export default function HomePage() {
       C510 90 565 50 635 78
       C665 90 685 102 695 118
     "
-            fill="none"
-            stroke="#FFD11A"
-            stroke-width="16"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            filter="url(#crayon)"
-          />
+          fill="none"
+          stroke="#FFD11A"
+          stroke-width="16"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#crayon)"
+        />
 
-          <path
-            d="
+        <path
+          d="
       M118 313
       C174 319 239 320 303 288
       C352 265 377 223 362 168
@@ -192,16 +192,16 @@ export default function HomePage() {
       C506 92 560 52 631 80
       C660 91 681 103 692 119
     "
-            fill="none"
-            stroke="#caa61596"
-            stroke-width="4"
-            stroke-linecap="round"
-            opacity="0.65"
-            filter="url(#crayon)"
-          />
+          fill="none"
+          stroke="#caa61596"
+          stroke-width="4"
+          stroke-linecap="round"
+          opacity="0.65"
+          filter="url(#crayon)"
+        />
 
-          <path
-            d="
+        <path
+          d="
       M122 307
       C178 311 243 310 308 282
       C357 259 383 218 368 164
@@ -211,45 +211,44 @@ export default function HomePage() {
       C514 93 568 55 636 82
       C665 93 684 104 694 117
     "
-            fill="none"
-            stroke="#FFC700"
-            stroke-width="3"
-            stroke-linecap="round"
-            opacity="0.55"
-            filter="url(#crayon)"
-          />
+          fill="none"
+          stroke="#FFC700"
+          stroke-width="3"
+          stroke-linecap="round"
+          opacity="0.55"
+          filter="url(#crayon)"
+        />
 
-          <path
-            d="
+        <path
+          d="
       M120 310
       L148 286
       M120 310
       L152 336
     "
-            fill="none"
-            stroke="#FFD11A"
-            stroke-width="16"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            filter="url(#crayon)"
-          />
+          fill="none"
+          stroke="#FFD11A"
+          stroke-width="16"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#crayon)"
+        />
 
-          <path
-            d="
+        <path
+          d="
       M120 310
       L148 286
       M120 310
       L152 336
     "
-            fill="none"
-            stroke="#caa61596"
-            stroke-width="3"
-            stroke-linecap="round"
-            opacity="0.6"
-            filter="url(#crayon)"
-          />
-        </svg>
-      </div>
+          fill="none"
+          stroke="#caa61596"
+          stroke-width="3"
+          stroke-linecap="round"
+          opacity="0.6"
+          filter="url(#crayon)"
+        />
+      </svg>
     </section>
   );
 }

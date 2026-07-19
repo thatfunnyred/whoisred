@@ -182,14 +182,14 @@
   }
 }
 
-#wiggle-arrow-container {
+#wiggle-arrow {
   position: absolute;
-  top: 110px;
-  left: 600px;
+  top: 150px;
+  left: 750px;
 
   height: 40px;
   width: 40px;
 
-  scale: 0.45;
+  scale: 6;
   transform: rotate(-15deg);
 }
