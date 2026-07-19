@@ -249,6 +249,49 @@ export default function HomePage() {
           filter="url(#crayon)"
         />
       </svg>
+
+      <svg
+        id="rough-underline"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 700 120"
+      >
+        <defs>
+          <filter id="crayon">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency=".85"
+              numOctaves="3"
+              seed="5"
+              result="noise"
+            />
+
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+        </defs>
+
+        <g filter="url(#crayon)">
+          <path
+            d="M30 60
+C180 72 320 38 470 54
+C580 62 645 48 680 56"
+            fill="none"
+            stroke="var(--highlight-color)"
+            stroke-width="22"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M30 63
+C180 69 320 42 470 56
+C580 59 645 51 680 58"
+            fill="none"
+            stroke="white"
+            stroke-opacity=".15"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+        </g>
+      </svg>
     </section>
   );
 }
