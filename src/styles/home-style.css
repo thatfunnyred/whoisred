@@ -192,6 +192,5 @@
   flex-shrink: 0;
   display: block;
 
-  scale: 0.4;
-  transform: rotate(-15deg);
+  transform: rotate(-15deg) scale(0.4);
 }
