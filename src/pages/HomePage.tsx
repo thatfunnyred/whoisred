@@ -5,31 +5,159 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import NavBar from "../components/NavBar";
 
 import "../styles/home-style.css";
+import RoughCircle from "../components/svgs/RoughCircle";
+import SectionSeparator from "../components/svgs/SectionSeparator";
+import WiggleArrow from "../components/svgs/WiggleArrow";
+import RoughUnderline from "../components/svgs/RoughUnderline";
+import PaintSplatter, {
+  PAINT_SPOT_1_SHAPES,
+  PAINT_SPOT_2_SHAPES,
+} from "../components/svgs/PaintSplatter";
+import TitleScrible from "../components/svgs/TitleScrible";
+import Sticky1 from "../components/svgs/Sticky1";
+import Sticky2 from "../components/svgs/Sticky2";
+import Sticky4 from "../components/svgs/Sticky4";
+import ProjectArrow from "../components/svgs/ProjectArrow";
+import Postcard from "../components/svgs/PostCardc";
+import { getRandomInt } from "../Utils/utils";
 
-export default function HomePage() {
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  const PLACEHOLDER_QUERIES: string[] = [
-    "red...",
-    "projects...",
-    "skills...",
-    "experience...",
-  ];
+/** The jagged, hand-drawn wavy divider used at both section-transition points. */
 
-  const searchInputRef = useRef<null | HTMLInputElement>(null);
+function CrayonFilterDefs() {
+  return (
+    <svg
+      width="0"
+      height="0"
+      style={{ position: "absolute" }}
+      aria-hidden="true"
+    >
+      <defs>
+        {/* Rough wobble + fine grain — used on filled shapes (asterisk, splatters, icons) */}
+        <filter id="crayon" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.9"
+            numOctaves={2}
+            seed={7}
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale={2.2}
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="wobble"
+          />
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.75"
+            numOctaves={3}
+            seed={3}
+            result="grain"
+          />
+          <feColorMatrix
+            in="grain"
+            type="matrix"
+            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0"
+            result="grainAlpha"
+          />
+          <feComposite
+            in="wobble"
+            in2="grainAlpha"
+            operator="out"
+            result="textured"
+          />
+          <feMerge>
+            <feMergeNode in="textured" />
+            <feMergeNode in="wobble" />
+          </feMerge>
+        </filter>
 
-  const lerp = (a: number, b: number, t: number) => {
-    return a + (b - a) * t;
-  };
+        {/* Lighter wobble only — used on strokes (arrow, underline, circles) */}
+        <filter id="crayonSoft" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.03 0.9"
+            numOctaves={2}
+            seed={4}
+            result="n"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="n"
+            scale={6}
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+
+        {/* Heavier wobble — used on the big section-divider path */}
+        <filter id="crayonRough" x="-10%" y="-60%" width="120%" height="220%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.18 0.35"
+            numOctaves={5}
+            seed={14}
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale={55}
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+function StickyFilter() {
+  return (
+    <svg
+      width="0"
+      height="0"
+      style={{ position: "absolute" }}
+      aria-hidden="true"
+    >
+      <defs>
+        <filter id="crayonWobble" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.03 0.05"
+            numOctaves={2}
+            seed={6}
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale={3.5}
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+function useTypingPlaceholder(
+  queries: string[],
+  inputRef: React.RefObject<HTMLInputElement | null>,
+) {
   useEffect(() => {
     let queryIndex = 0;
     let charIndex = 0;
     let deleting = false;
 
     const type = () => {
-      const input = searchInputRef.current;
+      const input = inputRef.current;
       if (!input) return;
 
-      const current = PLACEHOLDER_QUERIES[queryIndex];
+      const current = queries[queryIndex];
 
       if (!deleting) {
         charIndex++;
@@ -40,7 +168,6 @@ export default function HomePage() {
           setTimeout(type, 2000);
           return;
         }
-
         setTimeout(type, 100);
       } else {
         charIndex--;
@@ -48,250 +175,172 @@ export default function HomePage() {
 
         if (charIndex === 0) {
           deleting = false;
-          queryIndex = (queryIndex + 1) % PLACEHOLDER_QUERIES.length;
-
+          queryIndex = (queryIndex + 1) % queries.length;
           setTimeout(type, 300);
           return;
         }
-
         setTimeout(type, 60);
       }
     };
 
     type();
   }, []);
+}
+
+const PLACEHOLDER_QUERIES: string[] = [
+  "red...",
+  "projects...",
+  "skills...",
+  "experience...",
+];
+
+export default function HomePage() {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const searchInputRef = useRef<null | HTMLInputElement>(null);
+
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+  useTypingPlaceholder(PLACEHOLDER_QUERIES, searchInputRef);
+
+  const [projectRotation, setProjectRotation] = useState<string[]>([]);
+  const [stickyNoteRotation, setStickyNoteRotation] = useState<string[]>([]);
+  
+  useEffect(() => {
+    let rotations_project = [];
+    for(let i = 0; i < 4; i++) {
+      rotations_project.push(`${getRandomInt(-10, 10)}deg`);
+    }
+
+    let rotations_stickynote = [];
+    for(let i = 0; i < 4; i++) {
+      rotations_stickynote.push(`${getRandomInt(-20, 20)}deg`);
+    }
+
+    setProjectRotation(rotations_project);
+    setStickyNoteRotation(rotations_stickynote)
+  }, []);
 
   return (
-    <section
-      className="landing-section"
-      style={
-        {
-          "--mouse-x": `${mouse.x}px`,
-          "--mouse-y": `${mouse.y}px`,
-        } as React.CSSProperties
-      }
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        console.log(mouse);
+    <>
+      <CrayonFilterDefs />
+      <StickyFilter />
 
-        setMouse({
-          x: lerp(mouse.x, e.clientX - rect.left, 0.05),
-          y: lerp(mouse.y, e.clientY - rect.top, 0.05),
-        });
-      }}
-    >
-      <NavBar />
+      <section
+        id="landing-section"
+        className="landing-section"
+        style={
+          {
+            "--mouse-x": `${mouse.x}px`,
+            "--mouse-y": `${mouse.y}px`,
+          } as React.CSSProperties
+        }
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          setMouse({
+            x: lerp(mouse.x, e.clientX - rect.left, 0.05),
+            y: lerp(mouse.y, e.clientY - rect.top, 0.05),
+          });
+        }}
+      >
+        <NavBar />
 
-      <div className="landing-section-content">
-        <div className="landing-section-left-content">
-          <div className="landing-section-title-container">
-            <span id="landing-section-greeting" className="jersey-25-regular">
-              HEY!
-            </span>
+        <div className="landing-section-content">
+          <div className="landing-section-left-content">
+            <div className="landing-section-title-container">
+              <TitleScrible id="title-scrible" />
 
-            <h1 id="landing-section-title" className="rubik-dirt-regular">
-              <div>
-                SEARCH <br></br> ABOUT <span id="me-text">ME.</span>
-              </div>
-            </h1>
-            <h3 id="landing-section-sub-title" className="jersey-25-regular">
-              Lorem ipsum dolor sit, amet consectetur adipisi elit. Ab quam
-              similique, cupiditate voluptatum delectus repellat quaerat facilis
-              quaerat facilis facilis
-            </h3>
-          </div>
-          <div className="search-box-container">
-            <div className="search-box">
-              <input
-                id="search-input"
-                className="chelsea-market-regular"
-                type="text"
-                placeholder="Search about red..."
-                ref={searchInputRef}
-              ></input>
-              <button id="search-btn">
-                <FontAwesomeIcon id="search-icon" icon={faMagnifyingGlass} />
-              </button>
+              <span id="landing-section-greeting" className="jersey-25-regular">
+                <div>HELLO.</div>
+              </span>
+
+              <h1 id="landing-section-title" className="erica-one-regular">
+                <div>
+                  I AM A GAME <br/><span id="developer-text">DEVELOPER.</span>
+                </div>
+              </h1>
+              <h3 id="landing-section-sub-title" className="jersey-25-regular">
+                I build playful digital experiences where games, stories, and technology meet.
+              </h3>
             </div>
+
+            <div className="search-box-container">
+              <div className="search-box">
+                <input
+                  id="search-input"
+                  className="chelsea-market-regular"
+                  type="text"
+                  placeholder="Search about red..."
+                  ref={searchInputRef}
+                />
+                <button id="search-btn">
+                  <FontAwesomeIcon
+                    id="search-icon"
+                    filter="url(#crayon)"
+                    icon={faMagnifyingGlass}
+                  />
+                </button>
+              </div>
+            </div>
+
+            <h1 id="curious-hint" className="permanent-marker-regular" style={{filter: "url(#crayon)"}}>
+              Try searching anything!
+            </h1>
+          </div>
+
+          <div className="landing-section-right-content">
+            <div className="right-grid-container">
+              <div id="right-grid"></div>
+            </div>
+            <Sticky1 id="sticky-note-1" title="projects" rotation={stickyNoteRotation[0]}>
+              Still building something weird here →
+            </Sticky1>
+            <Sticky2 id="sticky-note-2" title="projects" rotation={stickyNoteRotation[2]}>
+              Still building something weird here →
+            </Sticky2>
+            <Sticky4 id="sticky-note-4" title="projects" rotation={stickyNoteRotation[3]}>
+              Still building something weird here →
+            </Sticky4>
           </div>
         </div>
-        <div className="landing-section-right-content"></div>
-      </div>
 
-      <svg
-        id="wiggle-arrow"
-        width="700"
-        height="420"
-        viewBox="0 0 700 420"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <filter id="crayon" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.9"
-              numOctaves="2"
-              seed="12"
-              result="noise"
-            />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" />
-          </filter>
+        <WiggleArrow id="wiggle-arrow" />
+         
+         
+        <RoughUnderline id="rough-underline" />
 
-          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="0.7" />
-          </filter>
-        </defs>
+        <RoughCircle id="rough-circle-1" />
+        <RoughCircle id="rough-circle-2" />
+        <RoughCircle id="rough-circle-3" />
 
-        <path
-          d="
-      M120 310
-      C175 315 240 315 305 285
-      C355 262 380 220 365 165
-      C350 120 295 110 275 155
-      C252 205 300 255 370 292
-      C450 334 535 270 520 165
-      C510 90 565 50 635 78
-      C665 90 685 102 695 118
-    "
-          fill="none"
-          stroke="#caa61596"
-          stroke-width="22"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          filter="url(#soft)"
-          opacity="0.9"
+        <PaintSplatter
+          id="paint-spot-1"
+          viewBox="0 0 140 120"
+          shapes={PAINT_SPOT_1_SHAPES}
+        />
+        <PaintSplatter
+          id="paint-spot-2"
+          viewBox="0 0 160 140"
+          shapes={PAINT_SPOT_2_SHAPES}
         />
 
-        <path
-          d="
-      M120 310
-      C175 315 240 315 305 285
-      C355 262 380 220 365 165
-      C350 120 295 110 275 155
-      C252 205 300 255 370 292
-      C450 334 535 270 520 165
-      C510 90 565 50 635 78
-      C665 90 685 102 695 118
-    "
-          fill="none"
-          stroke="#FFD11A"
-          stroke-width="16"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          filter="url(#crayon)"
-        />
+        <h1 id="projects-hint" className="permanent-marker-regular" style={{filter: "url(#crayon)"}}>
+              MY PROJECTS
+            </h1>
+        <WiggleArrow id="project-arrow" />
+      </section>
 
-        <path
-          d="
-      M118 313
-      C174 319 239 320 303 288
-      C352 265 377 223 362 168
-      C348 122 297 114 279 156
-      C257 202 302 253 368 289
-      C447 330 530 267 516 166
-      C506 92 560 52 631 80
-      C660 91 681 103 692 119
-    "
-          fill="none"
-          stroke="#caa61596"
-          stroke-width="4"
-          stroke-linecap="round"
-          opacity="0.65"
-          filter="url(#crayon)"
-        />
 
-        <path
-          d="
-      M122 307
-      C178 311 243 310 308 282
-      C357 259 383 218 368 164
-      C353 118 300 108 281 152
-      C260 199 306 251 372 294
-      C452 338 539 274 524 169
-      C514 93 568 55 636 82
-      C665 93 684 104 694 117
-    "
-          fill="none"
-          stroke="#FFC700"
-          stroke-width="3"
-          stroke-linecap="round"
-          opacity="0.55"
-          filter="url(#crayon)"
-        />
+      <section id="project-section" className="project-section">
+        <SectionSeparator id="project-section-separator-1" />
+        <div className="project-cards-container">
+        <Postcard id="project-card-1" paper="#f6ecd9" rotation={projectRotation[0]} image="assets/images/images(1).jpg" />
+        <Postcard id="project-card-2" paper="#EB7F31" rotation={projectRotation[1]} image="assets/images/images(1).jpg" />
+        <Postcard id="project-card-3" paper="#fbf6ed" rotation={projectRotation[2]} image="assets/images/images(1).jpg" />
+        <Postcard id="project-card-4" paper="#F7ADAD" rotation={projectRotation[3]} image="assets/images/images(1).jpg" />
+        </div>
+        <SectionSeparator id="project-section-separator-2" />
+      </section>
 
-        <path
-          d="
-      M120 310
-      L148 286
-      M120 310
-      L152 336
-    "
-          fill="none"
-          stroke="#FFD11A"
-          stroke-width="16"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          filter="url(#crayon)"
-        />
-
-        <path
-          d="
-      M120 310
-      L148 286
-      M120 310
-      L152 336
-    "
-          fill="none"
-          stroke="#caa61596"
-          stroke-width="3"
-          stroke-linecap="round"
-          opacity="0.6"
-          filter="url(#crayon)"
-        />
-      </svg>
-
-      <svg
-        id="rough-underline"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 700 120"
-      >
-        <defs>
-          <filter id="crayon">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency=".85"
-              numOctaves="3"
-              seed="5"
-              result="noise"
-            />
-
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
-          </filter>
-        </defs>
-
-        <g filter="url(#crayon)">
-          <path
-            d="M30 60
-C180 72 320 38 470 54
-C580 62 645 48 680 56"
-            fill="none"
-            stroke="var(--highlight-color)"
-            stroke-width="22"
-            stroke-linecap="round"
-          />
-
-          <path
-            d="M30 63
-C180 69 320 42 470 56
-C580 59 645 51 680 58"
-            fill="none"
-            stroke="white"
-            stroke-opacity=".15"
-            stroke-width="5"
-            stroke-linecap="round"
-          />
-        </g>
-      </svg>
-    </section>
+    </>
   );
 }

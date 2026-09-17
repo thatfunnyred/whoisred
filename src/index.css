@@ -3,7 +3,9 @@
   --secondry-color: #9b0f06;
   --highlight-color: #d53e0f;
   --accent-color: #ffe100;
-  --background-color: #ffe10011;
+  --background-color: #fffef8;
+  --ink: #1a1815;
+  --cream: #faf6ec;
 }
 
 * {
@@ -13,8 +15,11 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
+
+  overflow-x: hidden;
+
 }
 
 body::-webkit-scrollbar {
