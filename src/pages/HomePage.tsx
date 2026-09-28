@@ -17,9 +17,7 @@ export default function HomePage() {
   const [projectRotation] = useState<number[]>(() =>
     PROJECT_CARDS.map(() => getRandomInt(-15, 15)),
   );
-  const [stickyNoteRotation] = useState<number[]>(() =>
-    Array.from({ length: 3 }, () => getRandomInt(-20, 20)),
-  );
+  const stickyNoteRotation = [-3, 3, -2];
 
   return (
     <>

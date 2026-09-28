@@ -42,9 +42,9 @@
     transform-origin: top right;
   }
 
-  #sticky-note-1 { left: 20px; }
-  #sticky-note-2 { left: 160px; }
-  #sticky-note-4 { left: 10px; }
+  #sticky-note-1 { left: clamp(0px, calc(100% - 252px), 20px); }
+  #sticky-note-2 { left: clamp(0px, calc(100% - 232px), 160px); }
+  #sticky-note-4 { left: clamp(0px, calc(100% - 232px), 12px); }
 
   #projects-hint {
     left: 38%;

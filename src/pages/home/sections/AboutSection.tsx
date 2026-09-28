@@ -1,6 +1,15 @@
 import { useRef, useState, type FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGithub,
+  faInstagram,
+  faItchIo,
+  faLeetcode,
+  faLinkedin,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 import RoughCircle from "../../../components/svgs/RoughCircle";
 import WiggleArrow from "../../../components/svgs/WiggleArrow";
@@ -16,6 +25,68 @@ import Sticky2 from "../../../components/svgs/Sticky2";
 import Sticky4 from "../../../components/svgs/Sticky4";
 import { PLACEHOLDER_QUERIES } from "../data";
 import { useTypingPlaceholder } from "../hooks/useTypingPlaceholder";
+
+interface SocialProfile {
+  name: string;
+  url: string;
+  icon: IconDefinition;
+}
+
+const SOCIAL_PROFILES = {
+  github: {
+    name: "GitHub",
+    url: "https://github.com/thatfunnyred",
+    icon: faGithub,
+  },
+  leetcode: {
+    name: "LeetCode",
+    url: "https://leetcode.com/u/thatfunnyred/",
+    icon: faLeetcode,
+  },
+  itch: {
+    name: "itch.io",
+    url: "https://thatfunnyred.itch.io",
+    icon: faItchIo,
+  },
+  youtube: {
+    name: "YouTube",
+    url: "https://www.youtube.com/@thatfunnyred",
+    icon: faYoutube,
+  },
+  instagram: {
+    name: "Instagram",
+    url: "https://www.instagram.com/thatfunnyred/",
+    icon: faInstagram,
+  },
+  linkedin: {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/thatfunnyred/",
+    icon: faLinkedin,
+  },
+} satisfies Record<string, SocialProfile>;
+
+const ALL_SOCIAL_PROFILES = Object.values(SOCIAL_PROFILES);
+
+function SocialLinks({ profiles }: { profiles: SocialProfile[] }) {
+  return (
+    <div className="about-social-links">
+      {profiles.map(({ name, url, icon }) => (
+        <a
+          className="about-social-link"
+          href={url}
+          key={name}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${name} profile (opens in a new tab)`}
+        >
+          <FontAwesomeIcon icon={icon} aria-hidden="true" />
+          <span>{name}</span>
+          <span className="about-social-link-arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  );
+}
 
 interface AboutSectionProps {
   stickyNoteRotation: number[];
@@ -115,6 +186,11 @@ export default function AboutSection({
             </p>
           </div>
 
+          <nav className="about-social-mobile" aria-label="Find me online">
+            <p className="about-social-mobile-title">FIND ME ONLINE</p>
+            <SocialLinks profiles={ALL_SOCIAL_PROFILES} />
+          </nav>
+
           <h1
             id="curious-hint"
             className="permanent-marker-regular"
@@ -131,26 +207,36 @@ export default function AboutSection({
           <Sticky1
             id="sticky-note-1"
             className="sticky-notes"
-            title="projects"
+            title="code & puzzles"
             rotation={`${stickyNoteRotation[0]}deg`}
           >
-            Game ideas built through code, craft, and play
+            <SocialLinks
+              profiles={[
+                SOCIAL_PROFILES.github,
+                SOCIAL_PROFILES.leetcode,
+              ]}
+            />
           </Sticky1>
           <Sticky2
             id="sticky-note-2"
             className="sticky-notes"
-            title="projects"
+            title="games"
             rotation={`${stickyNoteRotation[1]}deg`}
           >
-            Small prototypes for curious mechanics
+            <SocialLinks profiles={[SOCIAL_PROFILES.itch, SOCIAL_PROFILES.youtube]} />
           </Sticky2>
           <Sticky4
             id="sticky-note-4"
             className="sticky-notes"
-            title="projects"
+            title="meet & share"
             rotation={`${stickyNoteRotation[2]}deg`}
           >
-            Games, stories, and playful experiences
+            <SocialLinks
+              profiles={[
+                SOCIAL_PROFILES.linkedin,
+                SOCIAL_PROFILES.instagram,
+              ]}
+            />
           </Sticky4>
         </div>
       </div>

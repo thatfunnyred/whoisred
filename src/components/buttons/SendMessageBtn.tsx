@@ -108,7 +108,7 @@ export default function SendMessageBtn({
           transform: translateY(-2px);
         }
         .send-message-btn:active {
-          transform: translateY(1px);
+          transform: translateY(1px) scale(0.98);
 
           & text {
             font-size: 18px;

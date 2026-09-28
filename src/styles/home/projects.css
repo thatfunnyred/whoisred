@@ -30,6 +30,7 @@
   top: -112px;
   
   transform: scale(0.8) scaleX(1.6);
+  animation: projectSeparatorShadowDrift 7s ease-in-out infinite;
   
   & path {
     fill: #00000090;
@@ -201,10 +202,23 @@
   bottom: -112px;
       
   transform: rotate(180deg) scale(0.8) scaleX(1.6);
+  animation: projectSeparatorShadowDriftReverse 8s ease-in-out infinite;
   
   & path {
     fill: #00000090;
   }
+}
+
+@keyframes projectSeparatorShadowDrift {
+  0%,
+  100% { translate: 0 0; }
+  50% { translate: 7px 3px; }
+}
+
+@keyframes projectSeparatorShadowDriftReverse {
+  0%,
+  100% { translate: 0 0; }
+  50% { translate: -6px -3px; }
 }
 
 #projects-dashed-line {

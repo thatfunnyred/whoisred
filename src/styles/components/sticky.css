@@ -32,22 +32,37 @@
 
 .sticky {
   position: relative;
-  width: 210px;
-  min-height: 200px;
-  padding: 26px 22px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 224px;
+  padding: 38px clamp(16px, 1.7vw, 22px) 20px;
   color: #1a1815;
   font-size: 19px;
   line-height: 1.35;
 }
 
 .sticky b {
+  position: relative;
+  width: fit-content;
   display: block;
-  margin-bottom: 8px;
-  font-size: 13px;
-  font-family: "Archivo Black", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  font-size: 16px;
+  font-family: "Permanent Marker", cursive;
+  letter-spacing: 0;
+  opacity: 0.82;
+}
+
+.sticky b::after {
+  position: absolute;
+  right: -5px;
+  bottom: -3px;
+  left: -1px;
+  height: 4px;
+  content: "";
+  border-bottom: 2px solid currentColor;
+  border-radius: 50%;
   opacity: 0.6;
+  transform: rotate(-1.5deg);
 }
 
 .crayon-outline {

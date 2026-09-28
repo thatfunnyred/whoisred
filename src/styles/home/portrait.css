@@ -3,8 +3,8 @@
   .about-section {
     min-height: 760px;
     height: auto;
-    top: 72px;
-    padding-bottom: 80px;
+    top: 52px;
+    padding-bottom: 132px;
   }
 
   .landing-section-content {
@@ -41,6 +41,71 @@
   .search-box { width: calc(100vw - 40px); margin-bottom: 0; }
   #search-input { min-width: 0; font-size: 16px; }
   #search-btn { width: 60px; }
+
+  .about-social-mobile {
+    display: block;
+    width: min(100%, 420px);
+    margin: 24px auto 0;
+    padding: 0 16px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-social-mobile-title {
+    display: table;
+    margin: 0 0 10px;
+    padding: 3px 8px 2px;
+    color: var(--ink);
+    border-bottom: 2px solid var(--highlight-color);
+    font-family: "Permanent Marker", cursive;
+    font-size: 15px;
+    transform: rotate(-1.5deg);
+  }
+
+  .about-social-mobile .about-social-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    margin: 0;
+  }
+
+  .about-social-mobile .about-social-link {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 8px 9px 6px;
+    border: 2px solid #1a1815b8;
+    border-radius: 14px 10px 12px 8px / 9px 13px 8px 12px;
+    background: #f7d93e;
+    box-shadow: 3px 3px 0 #1a181533;
+    font-size: clamp(14px, 4vw, 17px);
+  }
+
+  .about-social-mobile .about-social-link:nth-child(2n) {
+    background: #f2984b;
+    transform: rotate(1.1deg);
+  }
+
+  .about-social-mobile .about-social-link:nth-child(3n) {
+    background: #f0836a;
+    transform: rotate(-1.2deg);
+  }
+
+  .about-social-mobile .about-social-link:nth-child(4n) {
+    background: #f2e3b8;
+  }
+
+  .about-social-mobile .about-social-link > span:first-of-type {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .about-social-mobile .about-social-link-arrow {
+    margin-left: auto;
+  }
 
   .landing-section-right-content,
   .right-grid-container,
