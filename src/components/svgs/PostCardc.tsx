@@ -88,16 +88,6 @@ export default function Postcard({
           {line}
         </text>
       ))}
-
-      <text
-        x="30"
-        y={244 + lines.length * 18 + 8}
-        fontFamily="'Permanent Marker', cursive"
-        fontSize="28"
-        fill={ink}
-      >
-        &#8594;
-      </text>
     </svg>
   );
 }

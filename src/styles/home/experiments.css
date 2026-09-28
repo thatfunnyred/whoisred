@@ -1,6 +1,6 @@
 /* Experiments section */
 .experiments-section {
-  height: calc(100dvh - 80px);
+  height: calc(100vh - 80px);
   width: 100%;
 
   position: relative;

@@ -134,7 +134,7 @@ export default function AboutSection({
             title="projects"
             rotation={`${stickyNoteRotation[0]}deg`}
           >
-            Game ideas built through code, craft, and play →
+            Game ideas built through code, craft, and play
           </Sticky1>
           <Sticky2
             id="sticky-note-2"
@@ -142,7 +142,7 @@ export default function AboutSection({
             title="projects"
             rotation={`${stickyNoteRotation[1]}deg`}
           >
-            Small prototypes for curious mechanics →
+            Small prototypes for curious mechanics
           </Sticky2>
           <Sticky4
             id="sticky-note-4"
@@ -150,7 +150,7 @@ export default function AboutSection({
             title="projects"
             rotation={`${stickyNoteRotation[2]}deg`}
           >
-            Games, stories, and playful experiences →
+            Games, stories, and playful experiences
           </Sticky4>
         </div>
       </div>

@@ -60,6 +60,8 @@
   line-height: 1;
   color: var(--highlight-color);
   font-size: 26px;
+
+  text-decoration: none;
 }
 
 .navbar-menu-toggle,

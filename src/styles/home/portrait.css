@@ -164,7 +164,7 @@
   #highlight-circle { width: min(105px, 30vw); left: 0; top: 0; }
   #experiments-section-separator { width: 100%; }
   #experiments-container {
-    height: clamp(460px, 70dvh, 620px);
+    height: clamp(460px, 70vh, 620px);
     min-height: 0;
     flex: 0 0 auto;
     overflow: hidden;

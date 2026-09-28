@@ -5,30 +5,40 @@ import "../styles/contact-page.css";
 
 export default function ContactPage() {
   const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formId = import.meta.env.VITE_FORMSPREE_FORM_ID?.trim();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const recipient = import.meta.env.VITE_CONTACT_EMAIL?.trim();
-    if (!recipient) {
-      setStatus(
-        "The message form is ready, but its inbox has not been configured yet.",
-      );
+    if (!formId) {
+      setStatus("The contact form isn't connected yet. Please try again later.");
       return;
     }
 
-    const formData = new FormData(event.currentTarget);
-    const name = String(formData.get("name") ?? "").trim();
-    const email = String(formData.get("email") ?? "").trim();
-    const subject = String(formData.get("subject") ?? "").trim();
-    const message = String(formData.get("message") ?? "").trim();
-    const body = [`From: ${name}`, `Reply to: ${email}`, "", message].join("\n");
-    const mailto = new URL(`mailto:${recipient}`);
-    mailto.searchParams.set("subject", subject || `Portfolio message from ${name}`);
-    mailto.searchParams.set("body", body);
+    const form = event.currentTarget;
+    setIsSubmitting(true);
+    setStatus("Sending your message…");
 
-    window.location.href = mailto.toString();
-    setStatus("Your email app should open with the message draft.");
+    try {
+      const response = await fetch(`https://formspree.io/f/${encodeURIComponent(formId)}`, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+
+      if (!response.ok) {
+        setStatus("Your message couldn't be sent. Please try again in a moment.");
+        return;
+      }
+
+      form.reset();
+      setStatus("Message sent. Thanks for reaching out!");
+    } catch {
+      setStatus("Couldn't connect to send your message. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -93,8 +103,8 @@ export default function ContactPage() {
             required
           />
 
-          <button className="contact-submit" type="submit">
-            OPEN MESSAGE DRAFT <span aria-hidden="true">↗</span>
+          <button className="contact-submit" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "SENDING…" : "SEND MESSAGE"} <span aria-hidden="true">↗</span>
           </button>
           <p className="contact-form-status" role="status" aria-live="polite">
             {status}
