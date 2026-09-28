@@ -122,10 +122,6 @@
   transition: scale 180ms ease, filter 180ms ease;
 }
 
-.project-cards-scroll svg:hover {
-  filter: drop-shadow(0 8px 5px #00000055);
-}
-
 #project-fade-right, #project-fade-left {
   height: 100%;
   width: 250px;
