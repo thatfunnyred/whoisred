@@ -1,0 +1,320 @@
+/* Experiments section */
+.experiments-section {
+  height: calc(100dvh - 80px);
+  width: 100%;
+
+  position: relative;
+
+  padding-top: 32px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.experiments-section #experiments-section-title {
+  animation: softRise 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  z-index: 2;
+}
+
+.experiments-section #experiments-section-sub-title {
+  animation: softRise 650ms 130ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  position: relative;
+  z-index: 2;
+}
+
+.experiments-section .experiment-tabs-container {
+  animation: softRise 650ms 230ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.experiments-section #pin-board-1,
+.experiments-section #pin-board-2 {
+  animation: boardFadeIn 800ms ease both;
+}
+
+.experiments-section #pin-board-2 {
+  animation-delay: 140ms;
+}
+
+@keyframes boardFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#engage-text {
+  position: absolute;
+  left: 140px;
+  top: 70px;
+
+  text-align: center;
+  transform: rotate(-14deg);
+  filter: url(#crayon);
+}
+
+#curved-arrow {
+  position: absolute;
+  left: 230px;
+  top: 20px;
+}
+
+#experiments-title-scrible-1 {
+  position: absolute;
+  top: 88px;
+  left: 310px;
+
+  transform: rotate(-121deg) scale(1.3);
+
+  z-index: 99;
+
+  & g {
+    stroke: var(--highlight-color);
+  }
+}
+
+#experiments-title-scrible-2 {
+  position: absolute;
+  top: 28px;
+  right: 310px;
+
+  transform: rotate(77deg) scale(1.1);
+
+  z-index: 99;
+
+  & #stroke-1 {
+    stroke: var(--highlight-color);
+  }
+  & #stroke-2 {
+    stroke: var(--highlight-color);
+  }
+}
+
+#experiments-section-title {
+  font-size: 60px;
+  line-height: 0.8;
+  text-align: center;
+
+  position: relative;
+  line-height: 0.8;
+
+  filter: url(#crayon);
+}
+
+#experiments-text {
+  font-size: 56.7px;
+  color: var(--highlight-color);
+}
+
+#experiments-section-sub-title {
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1.1;
+
+  text-align: center;
+
+  margin-top: 16px;
+  filter: url(#crayon);
+
+  color: rgba(0, 0, 0, 0.43);
+}
+
+.experiment-tabs-container {
+  height: 50px;
+  width: 700px;
+
+  position: relative;
+  z-index: 4;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.experiment-tabs-container button {
+  position: relative;
+  z-index: 1;
+
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: black;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  transform-origin: center;
+  cursor: pointer;
+
+  filter: url(#crayon);
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.experiment-tabs-container button:hover {
+  transform: translateY(-2px) rotate(-2deg);
+}
+
+.experiment-tabs-container button:active {
+  scale: 0.96;
+}
+
+.experiment-tabs-container button:focus-visible {
+  outline: 2px dashed var(--highlight-color);
+  outline-offset: 4px;
+}
+
+#highlight-circle {
+  width: 160px;
+
+  position: absolute;
+  z-index: 0;
+  left: -60px;
+  top: -18px;
+  pointer-events: none;
+  transition:
+    left 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    top 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#experiments-section-separator {
+  width: 800px;
+  height: 4px;
+
+  position: relative;
+  z-index: 4;
+  flex-shrink: 0;
+
+  filter: url(#crayon);
+  background-color: var(--highlight-color);
+}
+
+#experiments-container {
+  width: 100%;
+
+  flex: 1;
+
+  position: relative;
+  z-index: 0;
+  min-height: 0;
+  align-self: stretch;
+}
+
+#pin-board-1 {
+  width: 1300px;
+  height: auto;
+
+  position: absolute;
+  top: -146px;
+  left: calc(25% - 650px);
+  z-index: 0;
+  pointer-events: none;
+
+  transform: scale(0.55);
+}
+
+#pin-board-2 {
+  width: 1300px;
+  height: auto;
+
+  position: absolute;
+  top: -146px;
+  left: calc(75% - 650px);
+  right: auto;
+  z-index: 0;
+  pointer-events: none;
+
+  transform: scale(0.55);
+}
+
+.experiment-notes-grid {
+  position: absolute;
+  top: 41px;
+  left: 0;
+  z-index: 2;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.experiment-board-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 14px;
+}
+
+.experiment-note {
+  position: relative;
+  flex: 0 1 280px;
+  min-width: 0;
+  min-height: 146px;
+  padding: 22px 18px 16px;
+
+  color: var(--ink);
+  background: #f4e6bd;
+  border: 2px solid var(--ink);
+  box-shadow: 5px 6px 0 #0000004d;
+  filter: url(#crayon);
+  animation: pinnedNoteArrive 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transition: box-shadow 180ms ease, translate 180ms ease;
+}
+
+.experiment-note:nth-child(2) {
+  animation-delay: 55ms;
+}
+
+.experiment-note:hover {
+  translate: 0 -4px;
+  box-shadow: 7px 10px 0 #0000003d;
+}
+
+.experiment-note:nth-child(3n + 2) {
+  background: #f2b7ae;
+  transform: rotate(1.5deg);
+}
+
+.experiment-note:nth-child(3n) {
+  background: #c7dfd1;
+  transform: rotate(-1.2deg);
+}
+
+.experiment-note-pin {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  z-index: 1;
+
+  width: 10px;
+  height: 10px;
+
+  background: var(--highlight-color);
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 1px 2px 0 #0000004d;
+  transform: translateX(-50%);
+}
+
+.experiment-note-kind {
+  display: block;
+  margin-bottom: 5px;
+
+  color: #4d4033;
+  font-family: "Geist Pixel", sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.experiment-note h2 {
+  margin-bottom: 6px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.experiment-note p {
+  font-family: "Jersey 25", sans-serif;
+  font-size: 17px;
+  line-height: 1.05;
+}

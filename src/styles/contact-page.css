@@ -1,0 +1,273 @@
+@import "./route-pages.css";
+
+.contact-page {
+  max-height: 100svh;
+  width: 100%;
+  padding: 48px clamp(18px, 6vw, 88px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-sheet {
+  position: relative;
+  isolation: isolate;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(36px, 7vw, 88px);
+  background: #fffdf7;
+  border: 2px solid var(--ink);
+  box-shadow: 10px 11px 0 #1a181533;
+  rotate: -0.35deg;
+
+  filter: url(#crayon); 
+}
+
+.contact-sheet::after {
+  position: absolute;
+  z-index: -1;
+  inset: -4px;
+  content: "";
+  border: 2px solid #1a1815b3;
+  filter: url(#crayon);
+  pointer-events: none;
+  rotate: 0.25deg;
+}
+
+.contact-sheet::before {
+  position: absolute;
+  z-index: -1;
+  top: -13px;
+  left: 12%;
+  width: 112px;
+  height: 28px;
+  content: "";
+  background: #ffe100b3;
+  border: 1px solid #1a18151f;
+  rotate: -4deg;
+}
+
+.contact-sheet-intro {
+  align-self: center;
+  padding: 10px 0;
+}
+
+.contact-sheet-intro h1 {
+  max-width: 440px;
+  margin-top: 22px;
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 0.9;
+}
+
+.contact-sheet-intro h1 span {
+  color: var(--highlight-color);
+}
+
+.contact-sheet-copy {
+  max-width: 380px;
+  margin-top: 22px;
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.contact-sheet-note {
+  width: fit-content;
+  margin-top: 30px;
+  padding: 9px 13px 7px;
+  color: var(--ink);
+  background: #f2b7ae;
+  border: 1px solid var(--ink);
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  filter: url(#crayon);
+  rotate: -2deg;
+}
+
+.contact-form {
+  display: grid;
+  gap: 10px;
+}
+
+.contact-form label {
+  margin-top: 8px;
+  color: #51463c;
+  font-family: "Geist Pixel", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  color: var(--ink);
+  background: #fbf6ea;
+  border: 1px solid #6d6255;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 2px;
+  font: 16px/1.35 "Space Grotesk", sans-serif;
+  user-select: text;
+}
+
+.contact-form textarea {
+  resize: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #857b70;
+  opacity: 1;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: 3px solid #d53e0f55;
+  border-color: var(--highlight-color);
+}
+
+.contact-submit {
+  width: fit-content;
+  margin-top: 10px;
+  padding: 13px 18px;
+  color: var(--cream);
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  clip-path: polygon(2% 8%, 97% 0%, 100% 88%, 4% 100%, 0% 40%);
+  cursor: pointer;
+  font-family: "Chelsea Market", sans-serif;
+  font-size: 14px;
+  filter: url(#crayon);
+  transition: translate 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.contact-submit:hover {
+  color: var(--ink);
+  background: var(--accent-color);
+  translate: 0 -2px;
+}
+
+.contact-submit span {
+  margin-left: 8px;
+  font-size: 18px;
+}
+
+.contact-form-status {
+  min-height: 1.4em;
+  color: #51463c;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 18px;
+}
+
+@media (max-width: 760px) {
+  .contact-page {
+    padding: 36px 18px;
+  }
+
+  .contact-sheet {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 32px clamp(20px, 6vw, 40px);
+    rotate: 0deg;
+  }
+
+  .contact-sheet-intro h1 {
+    max-width: none;
+    margin-top: 14px;
+    font-size: clamp(42px, 11vw, 64px);
+  }
+
+  .contact-sheet-copy {
+    margin-top: 14px;
+    font-size: 21px;
+  }
+
+  .contact-sheet-note {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-page {
+    min-height: 100svh;
+    max-height: none;
+    padding: 92px 16px 32px;
+    justify-content: flex-start;
+    overflow-x: clip;
+  }
+
+  .contact-page .route-page-topline {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin-bottom: 16px;
+  }
+
+  .contact-page .route-page-index {
+    margin-left: auto;
+  }
+
+  .contact-sheet {
+    width: 100%;
+    gap: 22px;
+    padding: 26px 18px 24px;
+  }
+
+  .contact-sheet-intro {
+    padding: 0;
+  }
+
+  .contact-sheet-intro h1 {
+    margin-top: 12px;
+    font-size: clamp(38px, 11vw, 54px);
+  }
+
+  .contact-sheet-copy {
+    margin-top: 12px;
+    font-size: 19px;
+    line-height: 1.2;
+  }
+
+  .contact-sheet-note {
+    max-width: 100%;
+    margin-top: 14px;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .contact-form {
+    gap: 8px;
+  }
+
+  .contact-form label {
+    margin-top: 6px;
+    font-size: 11px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 11px 10px;
+    font-size: 16px;
+  }
+
+  .contact-form textarea {
+    min-height: 132px;
+    resize: vertical;
+  }
+
+  .contact-submit {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 8px;
+    padding: 12px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-submit {
+    transition: none;
+  }
+}

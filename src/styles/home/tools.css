@@ -1,0 +1,162 @@
+/* Tools section */
+.tools-section {
+  height: calc(100dvh - 80px);
+  width: 100%;
+
+  position: relative;
+
+  margin-top: -96px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tools-section #tools-part-1,
+.tools-section #tools-part-2,
+.tools-section #tools-part-3 {
+  animation: toolsColumnEnter 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.tools-section #tools-part-2 { animation-delay: 120ms; }
+.tools-section #tools-part-3 { animation-delay: 240ms; }
+
+@keyframes toolsColumnEnter {
+  from { opacity: 0; translate: 0 22px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+.tools-part {
+  width: 33%;
+}
+
+#tools-part-1 {
+  padding-left: 24px;
+  padding-top: 48px;
+}
+
+#tools-section-title {
+  font-size: 60px;
+  line-height: 0.8;
+  text-align: left;
+
+  position: relative;
+  line-height: 0.8;
+
+  filter: url(#crayon);
+}
+
+#tools-text {
+  font-size: 56.7px;
+  color: var(--highlight-color);
+}
+
+#swiggly-line {
+  position: relative;
+  left: -24px;
+
+  margin-top: -38px;
+}
+
+#tools-section-sub-title {
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1.1;
+  
+  filter: url(#crayon);
+  margin-top: -38px;
+}
+
+#legend-note {
+  position: relative;
+  left: 104px;
+  top: 40px;
+
+  width: 212px;
+  margin-top: 24px;
+  scale: 1.5;
+}
+
+#tools-part-2 {
+  padding-top: 96px;
+}
+
+#tools-part-3 {
+  padding-top: 96px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#tools-curved-arrow {
+  position: absolute;
+  right: 330px;
+  top: 290px;
+
+  transform: rotate(-50deg);
+}
+
+#tools-info-text {
+  position: absolute;
+  right: 340px;
+  top: 400px;
+
+  text-align: left;
+  transform: rotate(-14deg);
+  filter: url(#crayon);
+}
+
+#quick-stat-note {
+  position: relative;
+  left: 64px;
+
+  transform: scale(0.9);
+}
+
+#favorite-note {
+  position: relative;
+  top: -60px;
+  left: 84px;
+
+  transform: scale(0.7);
+}
+
+#tools-btn-scrible-1 {
+  position: absolute;
+  top: 670px;
+  right: 370px;
+
+  transform: rotate(-77deg) scale(1.1);
+
+  z-index: 99;
+
+  & #stroke-2{
+    stroke: var(--highlight-color);
+  }
+  & #stroke-3 {
+    stroke: var(--highlight-color);
+  }
+}
+
+#tools-btn-scrible-2 {
+  position: absolute;
+  top: 620px;
+  right: 60px;
+
+  transform: rotate(77deg) scale(1.1);
+
+  z-index: 99;
+
+  & #stroke-1 {
+    stroke: var(--highlight-color);
+  }
+}
+
+#tools-send-message-btn { 
+  position: relative;
+  top: -84px;
+
+  rotate: -8deg;
+  /* transform: rotate(-8deg); */
+}

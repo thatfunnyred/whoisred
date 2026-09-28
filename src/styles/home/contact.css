@@ -1,0 +1,170 @@
+/* Contact section */
+.contact-section {
+  height: calc(100dvh - 80px);
+  width: 100%;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* padding-top: 72px; */
+}
+
+.contact-section #contact-section-title {
+  animation: softRise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.contact-section #contact-section-sub-title {
+  animation: softRise 650ms 130ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.contact-section #contact-section-separator {
+  animation: separatorDraw 700ms 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes separatorDraw {
+  from { clip-path: inset(0 50%); }
+  to { clip-path: inset(0 0); }
+}
+
+#contact-section-title {
+  font-size: 84px;
+  line-height: 0.8;
+  text-align: center;
+
+  position: relative;
+  line-height: 0.8;
+
+  filter: url(#crayon);
+  transform: rotate(-1.4deg);
+}
+
+#cta-text {
+  font-size: 72px;
+  color: var(--highlight-color);
+}
+
+
+#contact-title-scrible-1 {
+  position: absolute;
+  top: 78px;
+  left: 310px;
+
+  transform: rotate(-97deg) scale(1.6);
+
+  z-index: 99;
+
+  & #stroke-1 {
+    stroke: var(--highlight-color);
+  }
+  & #stroke-2 {
+    stroke: var(--highlight-color);
+  }
+}
+
+#contact-title-scrible-2 {
+  position: absolute;
+  top: 58px;
+  right: 320px;
+
+  transform: rotate(93deg) scale(1.6);
+
+  z-index: 99;
+
+  & #stroke-1 {
+    stroke: var(--highlight-color);
+  }
+}
+
+#contact-section-sub-title {
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1.1;
+
+  text-align: center;
+
+  margin-top: 32px;
+  /* filter: url(#crayon); */
+
+  color: rgba(0, 0, 0, 0.833);
+}
+
+#contact-section-separator {
+  width: 300px;
+  height: 10px;
+
+  margin-top: 24px;
+
+  filter: url(#crayon);
+  background-color: var(--highlight-color);
+}
+
+#contact-letter {
+  width: 300px;
+}
+
+.contact-section #contact-letter {
+  animation: paperDrift 6s ease-in-out 300ms infinite;
+}
+
+#contact-letter-scrible-1 {
+  position: absolute;
+  top: 388px;
+  left: 590px;
+
+  transform: rotate(-102deg) scale(1.6);
+
+  z-index: 99;
+
+  & g { stroke: var(--highlight-color); }
+}
+
+#contact-letter-scrible-2 {
+  position: absolute;
+  top: 348px;
+  right: 575px;
+  
+  transform: rotate(102deg) scale(1.6);
+  
+  z-index: 99;
+
+  & g { stroke: var(--highlight-color); }
+}
+
+#contact-paper-plane {
+  position: absolute;
+  top: 30px;
+
+  transform: scale(0.12) rotate(10deg);
+}
+
+.contact-section #contact-paper-plane {
+  animation: planeSway 7s ease-in-out 300ms infinite;
+}
+
+@keyframes planeSway {
+  0%,
+  100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: 15px -12px; rotate: -4deg; }
+}
+
+#contact-stamp {
+  position: absolute;
+  top: -30px;
+  left: 473px;
+
+  transform: scale(0.17) rotate(20deg);
+}
+
+.contact-section #contact-stamp {
+  animation: stampNod 4.5s ease-in-out 500ms infinite;
+}
+
+@keyframes stampNod {
+  0%,
+  100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: 0 -5px; rotate: 3deg; }
+}

@@ -1,15 +1,16 @@
 import "../../styles/components/sticky.css";
 
 interface StickyProps {
-  id?: string;
+  id: string;
+  className: string;
   title: string;
   children: React.ReactNode;
   rotation: string;
 }
 
-export default function Sticky4({ id, title, children, rotation }: StickyProps) {
+export default function Sticky4({ id, className, title, children, rotation }: StickyProps) {
   return (
-    <div id={id} className={`note-wrap`} style={{transform: `rotate(${rotation})`}}>
+    <div id={id} className={className} style={{transform: `rotate(${rotation})`}}>
       <div className="tape v4-tape-l grain" />
       <div className="tape v4-tape-r grain" />
 

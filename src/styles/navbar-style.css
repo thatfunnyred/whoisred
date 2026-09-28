@@ -4,7 +4,7 @@
 
   position:fixed;
   top: 0;
-  
+
   background:
     repeating-linear-gradient(
       90deg,
@@ -18,8 +18,8 @@
       transparent 19px,
       rgba(0, 0, 0, 0.07) 20px
     ),
-    var(--background-color);
-  
+    #ffffff;
+
   z-index: 99999;
 }
 
@@ -45,8 +45,9 @@
   pointer-events: none;
 }
 
-#navbar-logo-container {
+.navbar-logo-container {
   width: 160px;
+  flex: 0 0 auto;
 
   display: flex;
   align-items: center;
@@ -54,8 +55,16 @@
 }
 
 #navbar-logo {
+  display: inline-flex;
+  white-space: nowrap;
+  line-height: 1;
   color: var(--highlight-color);
   font-size: 26px;
+}
+
+.navbar-menu-toggle,
+.mobile-navbar-menu {
+  display: none;
 }
 
 #navbar-logo span {
@@ -135,31 +144,44 @@
 
 .navbar-links-container a {
   text-decoration: none;
+  text-transform: uppercase;
   color: black;
 
+  font-size: 16px;
   font-weight: 800;
 
+  cursor: pointer;
   transform-origin: center;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.navbar-links-container a:hover {
+  color: var(--highlight-color);
+  transform: translateY(-2px);
+}
+
+.navbar-links-container a:active {
+  font-size: 15px;
+}
+
+.navbar-links-container a:focus-visible {
+  outline: 2px dashed var(--highlight-color);
+  outline-offset: 4px;
 }
 
 #rough-double-underline {
 
   position: absolute;
-  left: -280px;
+  left: -210px;
   top: -42px;
 
   transform: scaleX(0.05) scaleY(0.12);
   transform-origin: center;
-  transition: transform 0.2s ease;
+  transition: left 0.3s ease-in-out;
 }
 
 #rough-double-underline path {
   stroke: var(--highlight-color);
-}
-
-.navbar-links-container a:hover {
-  text-decoration: none;
-  color: var(--highlight-color);
 }
 
 .navbar-cta-container {
@@ -187,14 +209,23 @@
   clip-path: polygon(2% 8%, 97% 0%, 100% 88%, 4% 100%, 0% 40%);
   transition:
     transform 0.18s ease,
-    background 0.18s ease;
+    background 0.18s ease,
+    scale 0.18s ease;
   scale: 1.1;
+
+  cursor: pointer;
 }
 
 #navbar-cta:hover {
   background: var(--accent-color);
   color: var(--ink);
   transform: translate(-2px, -2px);
+  scale: 1.14;
+}
+
+#navbar-cta:active {
+  filter: brightness(0.9);
+  font-size: 13px;
 }
 
 #navbar-cta svg {
@@ -212,6 +243,7 @@
 }
 
 .navbar-banner-container {
+  display: block;
   position: absolute;
   top: 50px;
   right: -125px;
@@ -224,6 +256,8 @@
 
   overflow: visible;
   transform: rotate(90deg) scale(0.8);
+  color: inherit;
+  text-decoration: none;
 
   cursor: pointer;
   transition: all 0.5s ease-in-out;

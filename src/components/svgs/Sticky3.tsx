@@ -1,15 +1,16 @@
 import "../../styles/components/sticky.css";
 
 interface StickyProps {
-  id?: string;
+  id: string;
+  className: string;
   title: string;
   children: React.ReactNode;
   rotation: string;
 }
 
-export default function Sticky3({ id, title, children, rotation }: StickyProps) {
+export default function Sticky3({ id, className, title, children, rotation }: StickyProps) {
   return (
-    <div id={id} className={`stack`} style={{transform: `rotate(${rotation})`}}>
+    <div id={id} className={className} style={{transform: `rotate(${rotation})`}}>
       <div className="sticky v3-back grain" />
 
       <svg

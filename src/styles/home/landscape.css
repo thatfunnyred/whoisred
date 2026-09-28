@@ -1,0 +1,12 @@
+/* Landscape-specific layout adjustments; keep the design scale unchanged. */
+@media (orientation: landscape) and (min-width: 601px) and (max-width: 900px) {
+  .navbar-banner-container { display: block; }
+
+  #tools-curved-arrow,
+  #tools-btn-scrible-1,
+  #tools-btn-scrible-2 { display: inline; }
+
+  #tools-info-text { display: block; }
+  #project-fade-right,
+  #project-fade-left { display: flex; }
+}

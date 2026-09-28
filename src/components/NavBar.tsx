@@ -2,30 +2,14 @@ import "../styles/navbar-style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { Fragment, useState } from "react";
 import SearchArrow from "./svgs/ProjectArrow";
 import DoubleUnderline from "./svgs/DoubleUnderline";
+import { SECTIONS, useSectionNavigation } from "./navigation/useSectionNavigation";
 
 export default function NavBar() {
-
-  const scrollToContent = (event: any, id: string) => {
-    document.querySelector(`#${id}`)?.scrollIntoView({behavior: 'smooth', block: 'start'});
-    
-    const doubleUnderline = document.querySelector(`#rough-double-underline`) as HTMLElement;
-
-    const currentSelectedTab = event.currentTarget as HTMLElement;
-
-    const rect = currentSelectedTab.getBoundingClientRect();
-
-    doubleUnderline.style.transform = "scaleX(0) scaleY(0)";
-
-    setTimeout(() => {
-      doubleUnderline.style.left =
-      `${rect.left + rect.width / 2 - window.innerWidth / 2}px`;
-      doubleUnderline.style.transform = "scaleX(0.05) scaleY(0.12)";
-    }, 200);
-
-    
-    };
+  const { scrollToContent } = useSectionNavigation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="navbar-universal-container">
@@ -35,6 +19,7 @@ export default function NavBar() {
             to={"/"}
             id="navbar-logo"
             className="rubik-spray-paint-regular"
+            onClick={() => setMobileMenuOpen(false)}
           >
             <span>W</span>
             <span>H</span>
@@ -49,19 +34,45 @@ export default function NavBar() {
         </div>
 
         <div className="navbar-links-container geist-pixel-uniquifier">
-          <a  onClick={(clickEvent) => scrollToContent(clickEvent, "landing-section")}>ABOUT</a>
-          <a onClick={(clickEvent) => scrollToContent(clickEvent, "project-section")}>PROJECTS</a>
-          <a href="#">EXPERIMENTS</a>
-          <a href="#">PLAYGROUND</a>
-          <a href="#">CONTACT</a>
+          {SECTIONS.map((section, key) => (
+            <Fragment key={section}>
+              <a
+                href={`#${section}-section`}
+                onClick={(clickEvent) =>
+                  scrollToContent(clickEvent, `${section}-section`)
+                }
+              >
+                {section}
+              </a>
+              {key !== SECTIONS.length - 1 && "|"}
+            </Fragment>
+          ))}
           <DoubleUnderline id="rough-double-underline" />
         </div>
 
         <div className="navbar-cta-container">
-          <div id="navbar-cta" className="chelsea-market-regular">
+          <NavLink
+            id="navbar-cta"
+            className="chelsea-market-regular"
+            to="/contact"
+          >
             HIRE ME!
             <SearchArrow id="search-arrow" />
-          </div>       </div>
+          </NavLink>
+        </div>
+
+        <button
+          type="button"
+          className="navbar-menu-toggle"
+          aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-navbar-menu"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
 
         <svg
           className="crayon-border"
@@ -75,8 +86,8 @@ export default function NavBar() {
               x2="1600"
               y2="9"
               stroke="#1a181567"
-              stroke-width="3.2"
-              stroke-linecap="round"
+              strokeWidth="3.2"
+              strokeLinecap="round"
               opacity="0.9"
             />
             <line
@@ -85,8 +96,8 @@ export default function NavBar() {
               x2="1600"
               y2="8"
               stroke="#1a181567"
-              stroke-width="2"
-              stroke-linecap="round"
+              strokeWidth="2"
+              strokeLinecap="round"
               opacity="0.45"
             />
             <line
@@ -95,20 +106,47 @@ export default function NavBar() {
               x2="1600"
               y2="10"
               stroke="#1a181567"
-              stroke-width="1.4"
-              stroke-linecap="round"
+              strokeWidth="1.4"
+              strokeLinecap="round"
               opacity="0.3"
             />
           </g>
         </svg>
       </div>
 
-      <div className="navbar-banner-container">
+      {mobileMenuOpen && (
+        <nav id="mobile-navbar-menu" className="mobile-navbar-menu" aria-label="Mobile navigation">
+          {SECTIONS.map((section) => (
+            <a
+              key={section}
+              href={`#${section}-section`}
+              onClick={(clickEvent) => {
+                scrollToContent(clickEvent, `${section}-section`);
+                setMobileMenuOpen(false);
+              }}
+            >
+              {section}
+            </a>
+          ))}
+          <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)}>
+            Hire me
+          </NavLink>
+        </nav>
+      )}
+
+      <a
+        className="navbar-banner-container"
+        href="#search-input"
+        onClick={(clickEvent) =>
+                  scrollToContent(clickEvent, `about-section`)
+                }
+        aria-label="Scroll to the portfolio search"
+      >
         <div id="navbar-banner" className="geist-pixel-uniquifier">
           SCROLL TO SEARCH{" "}
           <FontAwesomeIcon id="arrow-icon" icon={faArrowDown} />
         </div>
-      </div>
+      </a>
     </div>
   );
 }

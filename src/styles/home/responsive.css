@@ -1,0 +1,134 @@
+/* Tablet layout */
+@media (max-width: 900px) {
+  .about-section,
+  .tools-section,
+  .experiments-section,
+  .contact-section {
+    min-height: calc(100svh - 80px);
+    height: auto;
+  }
+
+  .landing-section-title-container {
+    height: auto;
+    min-height: 340px;
+    padding: 110px 24px 24px;
+  }
+
+  #landing-section-title {
+    left: 0;
+    font-size: clamp(58px, 9vw, 88px);
+  }
+
+  #landing-section-sub-title {
+    width: min(100%, 560px);
+    margin-left: 0;
+    align-self: center;
+  }
+
+  .search-box {
+    width: min(80vw, 620px);
+    margin-bottom: 100px;
+  }
+
+  #curious-hint {
+    left: auto;
+    right: 5%;
+    bottom: 100px;
+  }
+
+  .right-grid-container {
+    right: -130px;
+    transform: scale(0.8) skewY(-8deg);
+    transform-origin: top right;
+  }
+
+  #sticky-note-1 { left: 20px; }
+  #sticky-note-2 { left: 160px; }
+  #sticky-note-4 { left: 10px; }
+
+  #projects-hint {
+    left: 38%;
+    bottom: 90px;
+  }
+
+  #project-arrow {
+    left: 48%;
+    bottom: 10px;
+  }
+
+  .project-section {
+    height: 45dvh;
+    min-height: 320px;
+  }
+
+  .project-cards-scroll {
+    gap: 24px;
+    padding: 40px 48px;
+  }
+
+  #project-fade-right,
+  #project-fade-left {
+    width: 100px;
+    padding: 20px;
+  }
+
+  .tools-section {
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 24px 0;
+    padding: 80px 24px 40px;
+    margin-top: -64px;
+  }
+
+  .tools-part {
+    width: 50%;
+  }
+
+  #tools-part-1 { padding: 24px 12px; }
+  #tools-part-2 { padding-top: 24px; }
+  #tools-part-3 { padding-top: 24px; }
+
+  #tools-section-title { font-size: clamp(42px, 6vw, 60px); }
+  #tools-text { font-size: clamp(38px, 5.7vw, 56.7px); }
+
+  #tools-curved-arrow,
+  #tools-info-text,
+  #tools-btn-scrible-1,
+  #tools-btn-scrible-2 {
+    display: none;
+  }
+
+  #experiments-section-title { font-size: clamp(38px, 6vw, 60px); }
+  #experiments-text { font-size: clamp(34px, 5.7vw, 56.7px); }
+  #experiments-section-sub-title { padding: 0 24px; }
+  .experiment-tabs-container { width: min(92%, 700px); }
+  #experiments-section-separator { width: min(90%, 800px); }
+  #pin-board-1 { left: calc(25% - 650px); }
+  #pin-board-2 { left: calc(75% - 650px); right: auto; }
+  .experiment-notes-grid {
+    top: 0;
+  }
+  #pin-board-1,
+  #pin-board-2 { top: 0; transform: scale(0.34); }
+  .experiment-board-notes { gap: 12px; }
+  .experiment-note { flex-basis: calc(50% - 6px); }
+
+  #contact-title-scrible-1 { left: 12%; }
+  #contact-title-scrible-2 { right: 12%; }
+  #contact-letter-scrible-1 { left: 28%; }
+  #contact-letter-scrible-2 { right: 28%; }
+  #contact-stamp { left: auto; right: 18%; }
+}
+
+
+
+@media (max-width: 900px) {
+  .navbar-container { width: 100%; padding: 0 16px; }
+  .navbar-links-container { width: 52%; }
+  .navbar-cta-container { width: 120px; }
+  #navbar-cta { padding: 10px 14px; }
+  .navbar-banner-container { display: none; }
+}
+
+
+

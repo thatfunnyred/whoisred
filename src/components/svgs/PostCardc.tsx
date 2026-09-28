@@ -16,8 +16,8 @@ export interface PostcardProps {
 
 export default function Postcard({
   id = "postcard",
-  title = "Tiny Journeys",
-  lines = ["A slow, peaceful game", "about small moments."],
+  title = "Game Prototype",
+  lines = ["A playful idea explored", "through interactive design."],
   image,
   rotation = "0deg",
   paper = "#f6ecd9",

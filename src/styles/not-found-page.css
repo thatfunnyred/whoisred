@@ -1,0 +1,157 @@
+@import "./route-pages.css";
+
+.not-found-page {
+  height: 100dvh;
+  width: 100dvw;
+
+  padding: 0;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  filter: url(#crayon); 
+}
+
+.lost-page-card {
+  position: relative;
+  isolation: isolate;
+  width: min(760px, 100%);
+  padding: 64px;
+  text-align: center;
+  background: #fffdf7;
+  border: 2px solid var(--ink);
+  box-shadow: 11px 12px 0 #1a181533;
+  rotate: 0.6deg;
+}
+
+.lost-page-card::before,
+.lost-page-card::after {
+  position: absolute;
+  z-index: -1;
+  inset: 8px -8px -8px 8px;
+  content: "";
+  border: 1px solid #1a18154d;
+  background: #f2b7ae;
+  rotate: -1.4deg;
+}
+
+.lost-page-card::after {
+  inset: 14px -14px -14px 14px;
+  background: #c7dfd1;
+  rotate: 1.6deg;
+}
+
+.not-found-code {
+  margin: 24px 0 10px;
+  color: var(--highlight-color);
+  font-family: "Rubik Spray Paint", sans-serif;
+  font-size: clamp(100px, 22vw, 190px);
+  line-height: 0.8;
+  text-shadow: 5px 5px 0 #1a18151c;
+}
+
+.lost-page-card h1 {
+  margin: 20px auto 0;
+  font-size: clamp(34px, 6.5vw, 60px);
+  line-height: 0.95;
+}
+
+.lost-page-copy {
+  max-width: 480px;
+  margin: 18px auto 0;
+  font-size: 23px;
+  line-height: 1.15;
+}
+
+.lost-page-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding: 13px 20px;
+  color: var(--cream);
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  clip-path: polygon(2% 8%, 97% 0%, 100% 88%, 4% 100%, 0% 40%);
+  font-family: "Chelsea Market", sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  transition: translate 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.lost-page-home-link:hover {
+  color: var(--ink);
+  background: var(--accent-color);
+  translate: 0 -2px;
+}
+
+.lost-page-stamp {
+  position: absolute;
+  right: 8%;
+  bottom: 10%;
+  padding: 8px 10px;
+  color: var(--secondry-color);
+  border: 2px solid currentColor;
+  font-family: "Geist Pixel", sans-serif;
+  font-size: 11px;
+  line-height: 1.2;
+  rotate: 9deg;
+}
+
+@media (max-width: 600px) {
+  .not-found-page {
+    width: 100%;
+    height: auto;
+    min-height: 100svh;
+    padding: 96px 20px 32px;
+    overflow-x: clip;
+  }
+
+  .lost-page-card {
+    width: 100%;
+    max-width: 440px;
+    padding: clamp(28px, 8vw, 38px) clamp(20px, 7vw, 30px);
+    rotate: 0deg;
+  }
+
+  .not-found-code {
+    margin: 20px 0 8px;
+    font-size: clamp(104px, 34vw, 148px);
+  }
+
+  .lost-page-card h1 {
+    margin-top: 16px;
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .lost-page-copy {
+    margin-top: 14px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .lost-page-home-link {
+    max-width: 100%;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+
+  .lost-page-stamp {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    display: inline-block;
+    margin-top: 22px;
+    scale: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lost-page-home-link {
+    transition: none;
+  }
+}
