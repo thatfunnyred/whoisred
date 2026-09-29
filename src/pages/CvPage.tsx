@@ -56,13 +56,13 @@ export default function CvPage() {
 
           <nav className="cv-contact" aria-label="Contact and work profiles">
             <Link to="/contact">Contact</Link>
-            <a href="https://github.com/thatfunnyred">
+            <a href="https://github.com/thatfunnyred" target="_blank" rel="noopener noreferrer">
               GitHub
             </a>
-            <a href="https://thatfunnyred.itch.io">
+            <a href="https://thatfunnyred.itch.io" target="_blank" rel="noopener noreferrer">
               itch.io
             </a>
-            <a href="https://www.linkedin.com/in/thatfunnyred/">
+            <a href="https://www.linkedin.com/in/thatfunnyred/" target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
           </nav>
@@ -98,7 +98,7 @@ export default function CvPage() {
                   <span>HORROR · NARRATIVE</span>
                 </div>
                 <h3>
-                  <a href={projectLinks.thanksForWaiting}>
+                  <a href={projectLinks.thanksForWaiting} target="_blank" rel="noopener noreferrer">
                     Thanks For Waiting <span aria-hidden="true">↗</span>
                   </a>
                 </h3>
@@ -115,7 +115,7 @@ export default function CvPage() {
                   <span>SHOOTER</span>
                 </div>
                 <h3>
-                  <a href={projectLinks.paperStreet}>
+                  <a href={projectLinks.paperStreet} target="_blank" rel="noopener noreferrer">
                     Paper Street <span aria-hidden="true">↗</span>
                   </a>
                 </h3>
@@ -177,6 +177,19 @@ export default function CvPage() {
                 <li><span>02</span> Test it in a small playable form.</li>
                 <li><span>03</span> Refine the feedback, pacing, and clarity.</li>
               </ol>
+            </section>
+
+            <section
+              className="cv-side-section cv-direct-contact"
+              aria-labelledby="cv-direct-contact-title"
+            >
+              <h2 id="cv-direct-contact-title">Contact details</h2>
+              <p>
+                <a href="mailto:thatfunnyred@gmail.com">thatfunnyred@gmail.com</a>
+              </p>
+              <p>
+                <a href="tel:+919110063859">+91 911-006-3859</a>
+              </p>
             </section>
 
             <section className="cv-side-section cv-next-step" aria-labelledby="cv-next-title">

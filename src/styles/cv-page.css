@@ -114,16 +114,21 @@
 
 .cv-contact a,
 .cv-project h3 a,
+.cv-direct-contact a,
 .cv-next-step a,
 .cv-footer a {
+  position: relative;
   color: #285b91;
   cursor: pointer;
+  pointer-events: auto;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+  z-index: 2;
 }
 
 .cv-contact a:hover,
 .cv-project h3 a:hover,
+.cv-direct-contact a:hover,
 .cv-next-step a:hover,
 .cv-footer a:hover,
 .cv-home-link:hover {
@@ -266,6 +271,10 @@
   line-height: 1.7;
 }
 
+.cv-direct-contact a {
+  overflow-wrap: anywhere;
+}
+
 .cv-approach ol {
   margin: 0;
   padding: 0;
@@ -394,6 +403,7 @@
   .cv-topline a,
   .cv-contact a,
   .cv-project h3 a,
+  .cv-direct-contact a,
   .cv-next-step a,
   .cv-footer a {
     color: #182335;
