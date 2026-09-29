@@ -35,7 +35,7 @@ export default function Postcard({
       viewBox="0 0 400 310"
       width={width}
       className={className}
-      filter="url(#crayonWobble) url(#crayonWobble)"
+      filter="url(#crayonWobble) url(#crayon)"
       style={{ display: "block", transform: `scale(0.9) rotate(${rotation})`}}
     >
       <defs>

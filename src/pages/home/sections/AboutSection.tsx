@@ -1,4 +1,5 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -76,7 +77,7 @@ function SocialLinks({ profiles }: { profiles: SocialProfile[] }) {
           href={url}
           key={name}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           aria-label={`${name} profile (opens in a new tab)`}
         >
           <FontAwesomeIcon icon={icon} aria-hidden="true" />
@@ -95,52 +96,38 @@ interface AboutSectionProps {
 export default function AboutSection({
   stickyNoteRotation,
 }: AboutSectionProps) {
+  const navigate = useNavigate();
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const [searchCursor, setSearchCursor] = useState({ query: "", nextIndex: 0 });
+  const navigationTimerRef = useRef<number | null>(null);
+  const [isSearching, setIsSearching] = useState(false);
   const [searchFeedback, setSearchFeedback] = useState("");
   useTypingPlaceholder(PLACEHOLDER_QUERIES, searchInputRef);
+
+  useEffect(
+    () => () => {
+      if (navigationTimerRef.current !== null) {
+        window.clearTimeout(navigationTimerRef.current);
+      }
+    },
+    [],
+  );
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const query = searchInputRef.current?.value.trim().toLocaleLowerCase() ?? "";
+    const query = searchInputRef.current?.value.trim() ?? "";
     if (!query) {
       setSearchFeedback("Type a topic to search the portfolio.");
       searchInputRef.current?.focus();
       return;
     }
+    if (isSearching) return;
 
-    const queryTerms = query.split(/\s+/);
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>(
-        ".about-section, .project-section, .tools-section, .experiments-section, .contact-section",
-      ),
-    );
-    const matches = sections.filter((section) => {
-      const text = section.innerText.toLocaleLowerCase();
-      return queryTerms.every((term) => text.includes(term));
-    });
-
-    if (matches.length === 0) {
-      setSearchCursor({ query, nextIndex: 0 });
-      setSearchFeedback(`No results for “${query}”. Try another topic.`);
-      return;
-    }
-
-    const matchIndex =
-      searchCursor.query === query
-        ? searchCursor.nextIndex % matches.length
-        : 0;
-    const section = matches[matchIndex];
-    const sectionName = section.id
-      .replace("-section", "")
-      .replace(/^./, (letter) => letter.toUpperCase());
-
-    setSearchCursor({ query, nextIndex: matchIndex + 1 });
-    setSearchFeedback(
-      `Result ${matchIndex + 1} of ${matches.length}: ${sectionName}.`,
-    );
-    section.scrollIntoView({ behavior: "auto", block: "center" });
+    setSearchFeedback("");
+    setIsSearching(true);
+    navigationTimerRef.current = window.setTimeout(() => {
+      navigate(`/search?q=${encodeURIComponent(query)}`);
+    }, 200);
   };
 
   return (
@@ -163,7 +150,11 @@ export default function AboutSection({
           </div>
 
           <div className="search-box-container">
-            <form className="search-box" role="search" onSubmit={handleSearch}>
+            <form
+              className={`search-box${isSearching ? " is-searching" : ""}`}
+              role="search"
+              onSubmit={handleSearch}
+            >
               <input
                 id="search-input"
                 className="chelsea-market-regular"
@@ -171,9 +162,15 @@ export default function AboutSection({
                 placeholder="Search about game projects..."
                 aria-label="Search this portfolio"
                 autoComplete="off"
+                disabled={isSearching}
                 ref={searchInputRef}
               />
-              <button id="search-btn" type="submit" aria-label="Search">
+              <button
+                id="search-btn"
+                type="submit"
+                aria-label={isSearching ? "Searching" : "Search"}
+                disabled={isSearching}
+              >
                 <FontAwesomeIcon
                   id="search-icon"
                   filter="url(#crayon)"

@@ -47,6 +47,8 @@ export default function NavBar() {
               {key !== SECTIONS.length - 1 && "|"}
             </Fragment>
           ))}
+          <span aria-hidden="true">|</span>
+          <NavLink to="/cv">CV</NavLink>
           <DoubleUnderline id="rough-double-underline" />
         </div>
 
@@ -128,6 +130,9 @@ export default function NavBar() {
               {section}
             </a>
           ))}
+          <NavLink to="/cv" onClick={() => setMobileMenuOpen(false)}>
+            CV
+          </NavLink>
           <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)}>
             Hire me
           </NavLink>

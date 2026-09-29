@@ -5,15 +5,17 @@ import FilterDefs from "../pages/home/components/FilterDefs";
 import { registerNavigator } from "./navigation";
 
 const ContactPage = lazy(() => import("../pages/ContactPage"));
+const CvPage = lazy(() => import("../pages/CvPage"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
+const SearchPage = lazy(() => import("../pages/SearchPage"));
 
 function RouteScrollReset() {
-  const { hash, pathname } = useLocation();
+  const { hash, pathname, search } = useLocation();
 
   useEffect(() => {
     if (hash) return;
     window.scrollTo({ top: 0, behavior: "auto" });
-  }, [hash, pathname]);
+  }, [hash, pathname, search]);
 
   return null;
 }
@@ -42,6 +44,8 @@ export default function AppRouter() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cv" element={<CvPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

@@ -55,7 +55,7 @@ export default function ProjectsSection({
               className="project-card-link"
               href={project.url}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label={`Play ${project.title} on itch.io`}
             >
               <Postcard
