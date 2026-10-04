@@ -47,7 +47,6 @@ export default function NavBar() {
               {key !== SECTIONS.length - 1 && "|"}
             </Fragment>
           ))}
-          <span aria-hidden="true">|</span>
           <DoubleUnderline id="rough-double-underline" />
         </div>
 
