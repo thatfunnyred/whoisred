@@ -48,7 +48,6 @@ export default function NavBar() {
             </Fragment>
           ))}
           <span aria-hidden="true">|</span>
-          <NavLink to="/cv">CV</NavLink>
           <DoubleUnderline id="rough-double-underline" />
         </div>
 
