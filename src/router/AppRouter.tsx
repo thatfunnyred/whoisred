@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import FilterDefs from "../pages/home/components/FilterDefs";
+import SiteLoader from "../components/SiteLoader";
 import { registerNavigator } from "./navigation";
 
 const ContactPage = lazy(() => import("../pages/ContactPage"));
@@ -33,6 +34,7 @@ export default function AppRouter() {
       <RouteScrollReset />
       <FilterDefs />
       <div id="background-grid" />
+      <SiteLoader />
 
       <Suspense
         fallback={
